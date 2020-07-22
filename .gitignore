@@ -1,0 +1,10 @@
+**/.DS_Store
+*.out
+*.code-workspace
+venv/**
+**/*.class
+**/*.out
+**/bin/
+**/out/
+**/__pycache__/
+**/*.jar

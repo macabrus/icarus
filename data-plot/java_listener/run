@@ -1,2 +1,13 @@
+# script location
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+WD=$PWD
+
+# go into this location
+cd $DIR
+
 # to run it
 java -cp "xchart-3.6.4.jar:mjson-1.4.1.jar:IcarusStats.jar" IcarusStats $@
+
+# go back to where script was executed from
+cd $WD
