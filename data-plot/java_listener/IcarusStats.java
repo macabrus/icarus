@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Creates a real-time chart using SwingWorker
@@ -17,15 +18,16 @@ import java.util.*;
 public class IcarusStats {
 
   JFrame jf = new JFrame();
-  MulticastSocketListener socketListener = new MulticastSocketListener("224.0.0.1", "192.168.1.101", 12000, 1024);
+  private static MulticastSocketListener socketListener;
   Map<String, XYChart> charts = new HashMap<>();
 
   // variables to monitor
-  private static String[] variables;
+  private static List<String> variables;
 
   public static void main(String[] args) {
-    variables = args;
-    Arrays.stream(args).forEach(System.out::println);
+    socketListener = new MulticastSocketListener("224.0.0.1", args[0], 12000, 1024);
+    variables = Arrays.stream(args).skip(1).collect(Collectors.toList());
+    Arrays.stream(args).skip(1).forEach(System.out::println);
     IcarusStats swingWorkerRealTime = new IcarusStats();
     swingWorkerRealTime.go();
   }
@@ -38,16 +40,16 @@ public class IcarusStats {
     cons.weightx = 1;
     cons.gridx = 0;
 
-    for (int i = 0; i < variables.length; i++ ) {
+    for (int i = 0; i < variables.size(); i++ ) {
       // Create Chart
 //      chart = QuickChart.getChart(variables[i], "Time", variables[i], variables[i], new double[] { 0 }, new double[] { 0 });
       XYChart chart = new XYChartBuilder().height(200).build();
-      chart.addSeries(variables[i], new double[] { 0 }, new double[] { 0 });
+      chart.addSeries(variables.get(i), new double[] { 0 }, new double[] { 0 });
 //      chart.getStyler().setLegendVisible(false);
 //      chart.getStyler().setXAxisTicksVisible(false);
 //      chart.getStyler();
       chart.getSeriesMap().forEach((n,s) -> {s.setSmooth(true); s.setMarker(new None()); s.setLineColor(getRandomColor());});
-      charts.put(variables[i], chart);
+      charts.put(variables.get(i), chart);
       // Show it
 //    sw = new SwingWrapper<XYChart>(chart);
 //    sw.displayChart();
@@ -90,7 +92,7 @@ public class IcarusStats {
     Map<String, LinkedList<Double>> variableData = Collections.synchronizedMap(new HashMap<>());
 
     public MySwingWorker() {
-      Arrays.stream(variables).forEach(
+      variables.stream().forEach(
         var -> {
           LinkedList<Double> dataList = new LinkedList<>();
           dataList.add(.0);
