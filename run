@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Skripta za pokretanje cijelog projekta na RPI
+
+ssh pi@ic << EOF
+  cd icarus
+  python drivers/run.py
+EOF

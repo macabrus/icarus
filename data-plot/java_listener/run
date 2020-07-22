@@ -1,0 +1,2 @@
+# to run it
+java -cp "xchart-3.6.4.jar:mjson-1.4.1.jar:IcarusStats.jar" IcarusStats $@

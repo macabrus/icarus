@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Skripta za pokretanje test skripti na RPI
+
+ssh -t pi@ic <<ENDSSH 
+cd icarus/drivers
+python3 experiment/gyro_test.py
+exit
+ENDSSH

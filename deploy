@@ -1,0 +1,14 @@
+#!/bin/sh
+# Skripta za deployanje na raspberry pi
+# https://stackoverflow.com/questions/4412238/what-is-the-cleanest-way-to-ssh-and-run-multiple-commands-in-bash
+
+git add *
+git commit
+git push
+ssh -t pi@ic <<ENDSSH 
+cd icarus/drivers
+git reset --hard HEAD
+git pull
+exit
+ENDSSH
+echo "Deployed."
