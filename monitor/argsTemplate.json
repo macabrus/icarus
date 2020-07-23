@@ -1,0 +1,55 @@
+{
+    "//": "example file",
+    "INTERFACE_IP": "192.168.1.2",
+    "PORT": 12000,
+    "MULTICAST_IP": "224.0.0.1",
+    "BUFFER_SIZE": 1024,
+    "VAR_GROUPS": {
+        "gyro": [
+            "accX",
+            "accY",
+            "accZ"
+        ],
+        "acc": [
+            "gyroX",
+            "gyroY",
+            "gyroY"
+        ],
+        "mag": [
+            "magX",
+            "magY",
+            "magZ"
+        ],
+        "temp": [
+            "temp"
+        ]
+    },
+    "VAR_LABEL": {
+        "acc": "Acceleration",
+        "gyro": "Gyroscope",
+        "mag": "Magnetometer",
+        "temp": "Temperature"
+    },
+    "VAR_UNITS": {
+        "gyro": "º/s",
+        "temp": "ºC",
+        "acc": "g",
+        "mag": "mT"
+    },
+    "VAR_COLORS": {
+        "accX": "#92C28C",
+        "accY": "#2F595D",
+        "accZ": "#1E1D28",
+        "gyroX": "#D81E5B",
+        "gyroY": "#EB5E55",
+        "gyroZ": "#3A3335",
+        "temp": "#f00",
+        "magX": "#83a3bd",
+        "magY": "",
+        "magZ": "#6d4672"
+    },
+    "PLOT_HEIGHT": 200,
+    "LEGEND": false,
+    "UNITS": false,
+    "BREAK_ON": 999
+}
