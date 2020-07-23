@@ -11,7 +11,7 @@
             "accZ"
         ],
         "gyro": [
-            "gyrX",
+            "gyroX",
             "gyrY",
             "gyrZ"
         ],
@@ -26,7 +26,7 @@
     },
     "VAR_LABEL": {
         "accX": "Accel X",
-        "gyrX": "Gyro X",
+        "gyroX": "Gyro X",
         "accY": "Accel Y",
         "gyrY": "Gyro Y",
         "accZ": "Accel Z",
