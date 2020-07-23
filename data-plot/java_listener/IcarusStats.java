@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Map;
 
 /**
  * Creates a real-time chart using SwingWorker
@@ -96,7 +97,8 @@ public class IcarusStats {
         var -> {
           LinkedList<Double> dataList = new LinkedList<>();
           dataList.add(.0);
-          variableData.put(var,dataList);
+          variableData.put(var, dataList);
+
         });
       timestampList.add(.0);
     }
@@ -111,6 +113,7 @@ public class IcarusStats {
         //Mark time at which data was received to plot it
         long tmpTime = System.currentTimeMillis();
 
+        System.out.println("variableDataaaaaa:"+variableData);
         variableData.forEach((k,v) -> {
           if( j.has(k)) {
             v.add(j.at(k).asDouble());
@@ -155,9 +158,13 @@ public class IcarusStats {
     protected void process(List<Map<String, LinkedList<Double>>> chunks) {
 
       chunks.get(chunks.size() - 1).forEach((k,v) -> {
-        charts.get(k).updateXYSeries(k, timestampList, v, null);
-        jf.revalidate();
-        jf.repaint();
+        System.out.println("kkkkkkkkkkk: "+k);
+        System.out.println(charts);
+        if (charts.containsKey(k)) {
+          charts.get(k).updateXYSeries(k, timestampList, v, null);
+          jf.revalidate();
+          jf.repaint();
+        }
       });
 
 
