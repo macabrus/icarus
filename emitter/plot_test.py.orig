@@ -4,5 +4,9 @@ from time import sleep
 
 emitter = DataEmitter(debug=True)
 while 1:
+<<<<<<< HEAD
+    emitter.emit({ "var2": random.random()})
+=======
     emitter.emit({"randomData": random.random(), })
+>>>>>>> a089602871f5d9d67b65b6ec828359ec19d1ecc5
     sleep(0.1)
