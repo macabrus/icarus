@@ -8,3 +8,4 @@ venv/**
 **/out/
 **/__pycache__/
 **/*.jar
+**/args.json
