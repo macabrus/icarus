@@ -1,4 +1,5 @@
-# GLAVNI PROGRAM
+#!/usr/bin/python3
+# MAIN PROGRAM FOR EXECUTION ON RPI
 
 drone = Drone()
 

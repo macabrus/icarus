@@ -4,5 +4,10 @@ from time import sleep
 
 emitter = DataEmitter(debug=True)
 while 1:
-    emitter.emit({ "var2": random.random()})
+    emitter.emit({
+        "gyroX": random.random(),
+        "accX": random.random(),
+        "accZ": random.random(),
+        "accY": random.random()
+    })
     sleep(0.1)

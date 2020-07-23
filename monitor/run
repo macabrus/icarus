@@ -7,7 +7,7 @@ WD=$PWD
 cd $DIR
 
 # to run it
-java -cp "xchart-3.6.4.jar:mjson-1.4.1.jar:IcarusStats.jar" IcarusStats $@
+java -cp "lib/xchart-3.6.4.jar:lib/mjson-1.4.1.jar:bin/IcarusStats.jar" IcarusStats $@
 
 # go back to where script was executed from
 cd $WD

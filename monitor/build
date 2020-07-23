@@ -8,28 +8,34 @@ WD=$PWD
 # go into this location
 cd $DIR
 
+if [ ! -d lib ]; then
+    mkdir lib
+fi
+cd lib
 if [ ! -f xchart-3.6.4.jar ]; then
     wget -U "Any User Agent" https://repo1.maven.org/maven2/org/knowm/xchart/xchart/3.6.4/xchart-3.6.4.jar
 fi
 if [ ! -f mjson-1.4.1.jar ]; then
     wget -U "Any User Agent" https://repo1.maven.org/maven2/org/sharegov/mjson/1.4.1/mjson-1.4.1.jar
 fi
+cd ..
 
-if [ ! -d bin ]; then
-    mkdir bin
+if [ -d bin ]; then
+    rm -r bin
 fi
-if [ -f IcarusStats.jar ]; then
+mkdir bin
+
+if [ -f bin/IcarusStats.jar ]; then
     rm IcarusStats.jar
 fi
 
-javac -d bin -cp xchart-3.6.4.jar:mjson-1.4.1.jar:. IcarusStats.java
-echo "Main-Class: IcarusStats" > MANIFEST.MF
+javac -d bin -cp lib/xchart-3.6.4.jar:lib/mjson-1.4.1.jar:bin/ src/*.java
 cd bin
-jar -cvfm IcarusStats.jar ../MANIFEST.MF *
-mv IcarusStats.jar ..
-cd ..
-rm -rf bin/
+echo "Main-Class: IcarusStats" > MANIFEST.MF
+jar -cvfm IcarusStats.jar MANIFEST.MF *
 rm MANIFEST.MF
+rm *.class
+cd ..
 echo done.
 
 # go back to where script was executed from

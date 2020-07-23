@@ -1,19 +1,19 @@
 {
-    "//": "example file",
-    "INTERFACE_IP": "192.168.1.2",
+    "IF_IP": "localhost",
     "PORT": 12000,
-    "MULTICAST_IP": "224.0.0.1",
-    "BUFFER_SIZE": 1024,
-    "VAR_GROUPS": {
-        "gyro": [
+    "MCAST_IP": "224.0.0.1",
+    "BUFF_SIZE": 1024,
+    "TIMEOUT": 0.5,
+    "VAR_GROUP": {
+        "acc": [
             "accX",
             "accY",
             "accZ"
         ],
-        "acc": [
-            "gyroX",
-            "gyroY",
-            "gyroY"
+        "gyro": [
+            "gyrX",
+            "gyrY",
+            "gyrZ"
         ],
         "mag": [
             "magX",
@@ -25,18 +25,24 @@
         ]
     },
     "VAR_LABEL": {
-        "acc": "Acceleration",
-        "gyro": "Gyroscope",
-        "mag": "Magnetometer",
-        "temp": "Temperature"
+        "accX": "Accel X",
+        "gyrX": "Gyro X",
+        "accY": "Accel Y",
+        "gyrY": "Gyro Y",
+        "accZ": "Accel Z",
+        "gyrZ": "Gyro Z",
+        "magX": "Mag X",
+        "magY": "Mag Y",
+        "magZ": "Mag Z",
+        "temp": "Temp."
     },
-    "VAR_UNITS": {
+    "VAR_UNIT": {
         "gyro": "º/s",
         "temp": "ºC",
         "acc": "g",
         "mag": "mT"
     },
-    "VAR_COLORS": {
+    "VAR_COLOR": {
         "accX": "#92C28C",
         "accY": "#2F595D",
         "accZ": "#1E1D28",
@@ -45,11 +51,11 @@
         "gyroZ": "#3A3335",
         "temp": "#f00",
         "magX": "#83a3bd",
-        "magY": "",
+        "magY": "#000",
         "magZ": "#6d4672"
     },
     "PLOT_HEIGHT": 200,
-    "LEGEND": false,
-    "UNITS": false,
-    "BREAK_ON": 999
+    "BREAK_ON": 999,
+    "CONSOLE_LOG": false,
+    "SAVE_DATA": "data/"
 }

@@ -6,3 +6,6 @@ ssh pi@ic << EOF
   cd icarus
   python drivers/run.py
 EOF
+
+# Starting status monitor locally
+./monitor/run
