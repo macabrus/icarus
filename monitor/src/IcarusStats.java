@@ -33,7 +33,7 @@ public class IcarusStats {
 		icarusStats.go();
 	}
 
-	private void go() {
+	private void go() throws IOException {
 		JScrollPane sp = new JScrollPane();
 		JPanel jp = new JPanel(new GridBagLayout());
 		sp.setViewportView(jp);
@@ -42,7 +42,11 @@ public class IcarusStats {
 		gbc.weightx = 1;
 		gbc.gridx = 0;
 		conf.at("VAR_GROUP").asJsonMap().forEach((k, group) -> {
+			String unit = conf.at("VAR_UNIT").at(k) != null ? conf.at("VAR_UNIT").at(k).asString() : null;
 			XYChart chart = new XYChartBuilder()
+				.title(
+					(conf.at("VAR_LABEL").at(k) != null ?
+					conf.at("VAR_LABEL").at(k).asString() : "") + String.format(" [%s]",unit))
 				.theme(Styler.ChartTheme.Matlab)
 				.height(conf.at("PLOT_HEIGHT") != null ? conf.at("PLOT_HEIGHT").asInteger() : 200)
 				.build();
@@ -59,9 +63,10 @@ public class IcarusStats {
 				String color = conf.at("VAR_COLOR").at(n) != null ? conf.at("VAR_COLOR").at(n).asString() : "#000";
 				s.setLineColor(Color.decode(color));
 				String label = conf.at("VAR_LABEL").at(n) != null ? conf.at("VAR_LABEL").at(n).asString() : null;
-				String unit = conf.at("VAR_UNIT").at(n) != null ? conf.at("VAR_UNIT").at(n).asString() : null;
-				s.setLabel(label + " [" + unit + "]");
+				s.setLabel(label);
 			});
+			chart.getStyler().setXAxisTitleVisible(true);
+			chart.getStyler().setYAxisTitleVisible(true);
 			charts.put(k, chart);
 			XChartPanel<XYChart> chartPanel = new XChartPanel<>(chart);
 			jp.add(chartPanel, gbc);
@@ -72,7 +77,7 @@ public class IcarusStats {
 		mySwingWorker.execute();
 		// Setting up JFrame
 		jf.add(sp);
-		jf.setSize(new Dimension(900, 600));
+		jf.setSize(1000, 900);
 		// Kill worker on close
 		jf.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {

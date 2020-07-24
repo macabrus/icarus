@@ -20,25 +20,29 @@
             "magY",
             "magZ"
         ],
-        "temp": [
+        "tmp": [
             "temp"
         ]
     },
     "VAR_LABEL": {
-        "accX": "Accel X",
-        "gyrX": "Gyro X",
-        "accY": "Accel Y",
-        "gyrY": "Gyro Y",
-        "accZ": "Accel Z",
-        "gyrZ": "Gyro Z",
-        "magX": "Mag X",
-        "magY": "Mag Y",
-        "magZ": "Mag Z",
-        "temp": "Temp."
+        "accX": "X",
+        "gyrX": "X",
+        "accY": "Y",
+        "gyrY": "Y",
+        "accZ": "Z",
+        "gyrZ": "Z",
+        "magX": "X",
+        "magY": "Y",
+        "magZ": "Z",
+        "temp": "T",
+        "tmp": "Temperature",
+        "acc": "Accelerometer",
+        "gyro": "Gyroscope",
+        "mag": "Magnetometer"
     },
     "VAR_UNIT": {
         "gyro": "º/s",
-        "temp": "ºC",
+        "tmp": "ºC",
         "acc": "g",
         "mag": "mT"
     },
@@ -54,6 +58,7 @@
         "magY": "#000",
         "magZ": "#6d4672"
     },
+    "TIME_FRAME_SECONDS": 10,
     "PLOT_HEIGHT": 200,
     "BREAK_ON": 999,
     "CONSOLE_LOG": false,
