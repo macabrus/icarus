@@ -1,4 +1,5 @@
 {
+    "//": "DO NOT EDIT!!!",
     "IF_IP": "localhost",
     "PORT": 12000,
     "MCAST_IP": "224.0.0.1",
@@ -34,7 +35,7 @@
         "magX": "X",
         "magY": "Y",
         "magZ": "Z",
-        "temp": "T",
+        "temp": "Temp.",
         "tmp": "Temperature",
         "acc": "Accelerometer",
         "gyro": "Gyroscope",
@@ -53,13 +54,21 @@
         "gyroX": "#D81E5B",
         "gyroY": "#EB5E55",
         "gyroZ": "#3A3335",
-        "temp": "#f00",
+        "temp": "#ff0000",
         "magX": "#83a3bd",
-        "magY": "#000",
+        "magY": "#000000",
         "magZ": "#6d4672"
+    },
+    "VAR_RANGE": {
+        "random_var": {
+            "min": -8,
+            "max": 8
+        }
     },
     "TIME_FRAME_SECONDS": 5,
     "PLOT_HEIGHT": 200,
+    "LINE_WIDTH": 1.0,
+    "LINE_SMOOTHING": false,
     "BREAK_ON": 999,
     "CONSOLE_LOG": false,
     "SAVE_DATA": "data/"

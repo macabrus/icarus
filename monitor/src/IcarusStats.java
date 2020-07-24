@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class IcarusStats {
 
 	public static void main(String[] args) throws IOException {
 		// Reading configs
-		conf = Json.read(readFile(args[0], Charset.forName("UTF-8")));
+		conf = Json.read(readFile(args[0], StandardCharsets.UTF_8));
 		IcarusStats icarusStats = new IcarusStats();
 		icarusStats.go();
 	}
@@ -57,8 +58,15 @@ public class IcarusStats {
 					new double[] { 0 }
 				);
 			});
+			if (conf.at("VAR_RANGE").at(k) != null) {
+				chart.getStyler().setYAxisMax(conf.at("VAR_RANGE").at(k).at("max").asDouble());
+				chart.getStyler().setYAxisMin(conf.at("VAR_RANGE").at(k).at("min").asDouble());
+			}
+			//chart.getStyler().setXAxisTicksVisible(false);
+			chart.getStyler().setAntiAlias(false);
 			chart.getSeriesMap().forEach((n,s) -> {
-				s.setSmooth(true);
+				s.setLineWidth(conf.at("LINE_WIDTH").asFloat());
+				s.setSmooth(conf.at("LINE_SMOOTHING").asBoolean());
 				s.setMarker(new None());
 				String color = conf.at("VAR_COLOR").at(n) != null ? conf.at("VAR_COLOR").at(n).asString() : "#000";
 				s.setLineColor(Color.decode(color));
@@ -67,6 +75,8 @@ public class IcarusStats {
 			});
 			chart.getStyler().setXAxisTitleVisible(true);
 			chart.getStyler().setYAxisTitleVisible(true);
+			chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSW);
+			chart.getStyler().setYAxisGroupPosition(0, Styler.YAxisPosition.Right);
 			charts.put(k, chart);
 			XChartPanel<XYChart> chartPanel = new XChartPanel<>(chart);
 			jp.add(chartPanel, gbc);
