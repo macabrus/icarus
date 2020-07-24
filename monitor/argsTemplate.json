@@ -58,7 +58,7 @@
         "magY": "#000",
         "magZ": "#6d4672"
     },
-    "TIME_FRAME_SECONDS": 10,
+    "TIME_FRAME_SECONDS": 5,
     "PLOT_HEIGHT": 200,
     "BREAK_ON": 999,
     "CONSOLE_LOG": false,
