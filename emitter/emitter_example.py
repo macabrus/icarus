@@ -1,9 +1,13 @@
 from DataEmitter import *
+from encoders.BitEncoder import BitEncoder
 import random
 from time import sleep
 import math
 
 emitter = DataEmitter(debug=True)
+
+encoder = BitEncoder()
+print(encoder.unpack(encoder.pack({"accX":653.35})))
 
 data = {
     "gyrX": random.random(),
@@ -16,7 +20,6 @@ data = {
     "magY": random.random(),
     "magZ": random.random(),
     "temp": random.random(),
-    "x_normal": random.random(),
 }
 
 data_rate = 0.1
