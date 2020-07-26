@@ -10,12 +10,12 @@ encoder = BitEncoder()
 print(encoder.unpack(encoder.pack({"accX":653.35})))
 
 data = {
-    "gyrX": random.random(),
-    "gyrY": random.random(),
-    "gyrZ": random.random(),
     "accX": random.random(),
     "accZ": random.random(),
     "accY": random.random(),
+    "gyrX": random.random(),
+    "gyrY": random.random(),
+    "gyrZ": random.random(),
     "magX": random.random(),
     "magY": random.random(),
     "magZ": random.random(),
