@@ -15,23 +15,19 @@ public class MulticastSocketListener {
   private byte[] BUFFER;
   private MulticastSocket clientSocket;
 
-  public MulticastSocketListener(Json conf) {
+  public MulticastSocketListener(Json conf) throws IOException {
     MCAST_IP = conf.at("MCAST_IP").asString();
     IF_IP = conf.at("IF_IP").asString();
     BUFFER = new byte[conf.at("BUFF_SIZE").asInteger()];
     PORT = conf.at("PORT") == null ? conf.at("PORT").asInteger() : 12000;
-    try {
-      // Initialize socket
-      InetAddress mcastAddress = InetAddress.getByName(MCAST_IP);
-      InetAddress ifAddress = InetAddress.getByName(IF_IP);
-      clientSocket = new MulticastSocket(PORT);
-      //Joint the Multicast group.
-      clientSocket.setInterface(ifAddress);
-      clientSocket.joinGroup(mcastAddress);
-      clientSocket.setSoTimeout((int) (conf.at("TIMEOUT") != null ? conf.at("TIMEOUT").asFloat() * 1000 : 500));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    // Initialize socket
+    InetAddress mcastAddress = InetAddress.getByName(MCAST_IP);
+    InetAddress ifAddress = InetAddress.getByName(IF_IP);
+    clientSocket = new MulticastSocket(PORT);
+    //Joint the Multicast group.
+    clientSocket.setInterface(ifAddress);
+    clientSocket.joinGroup(mcastAddress);
+    clientSocket.setSoTimeout((int) (conf.at("TIMEOUT") != null ? conf.at("TIMEOUT").asFloat() * 1000 : 500));
   }
 
   public Json listenOnce() throws IOException {

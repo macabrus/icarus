@@ -2,6 +2,7 @@ import mjson.Json;
 import org.knowm.xchart.XYChart;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -24,7 +25,7 @@ class StatsWorker extends SwingWorker<Boolean, Map<String, Boolean>> {
 	// timestamp list of when packet was received (X axis)
 	private LinkedList<Double> timestampData = new LinkedList<>();
 
-	public StatsWorker(JFrame frame, Map<String, XYChart> charts, Json conf) {
+	public StatsWorker(JFrame frame, Map<String, XYChart> charts, Json conf) throws IOException {
 		// Reading socket conf
 		listener = new MulticastSocketListener(conf);
 		// Flat mapping groups to list of strings
@@ -67,6 +68,7 @@ class StatsWorker extends SwingWorker<Boolean, Map<String, Boolean>> {
 		timestampData.add(.0);
 		this.charts = charts;
 		this.frame = frame;
+		this.timeFrame = conf.at("TIME_FRAME_SECONDS").asFloat();
 	}
 
 	private long startTime;
@@ -94,7 +96,8 @@ class StatsWorker extends SwingWorker<Boolean, Map<String, Boolean>> {
 					updatedVar.put(k, true);
 				}
 			});
-			// If value was not read, set to last value that was read... a.k.a. graph will be straight line...
+			// If timeout, set to last value that was read...
+			// in essence, graph will become straight line...
 			updatedVar.forEach((k, v) -> {
 				if (!v) {
 					updateDataArray(varData.get(k), varData.get(k).getLast());
@@ -110,12 +113,20 @@ class StatsWorker extends SwingWorker<Boolean, Map<String, Boolean>> {
 		return true;
 	}
 
+	private float timeFrame;
+
 	// convenience func
 	private void updateDataArray(LinkedList<Double> data, double newPoint) {
-		data.add(newPoint);
-		if (data.size() > 50) {
-			data.removeFirst();
+		Iterator<Double> it = timestampData.iterator();
+		while (it.hasNext()) {
+			if (timestampData.getLast() - it.next() > timeFrame) {
+				if (timestampData == data) // different method in case of itself
+					it.remove();
+				else
+					data.removeFirst(); // all other data can be deleted like this
+			}
 		}
+		data.add(newPoint);
 	}
 
 	@Override

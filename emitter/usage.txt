@@ -1,5 +1,0 @@
-# on server
-python3 data_server.py [PORT]
-
-# on listener
-python3 data_listener.py [SERVER_IP] [SERVER_PORT]
