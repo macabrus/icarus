@@ -1,10 +1,10 @@
 import socket
 import json
-from encoders.JsonEncoder import JsonEncoder
+from encoders.BitEncoder import BitEncoder
 
 class DataEmitter:
 
-	def __init__(self, MCAST_GROUP='224.0.0.1', MCAST_PORT=12000, debug=False, encoder=JsonEncoder):
+	def __init__(self, MCAST_GROUP='224.0.0.1', MCAST_PORT=12000, debug=False, encoder=BitEncoder):
 		self.MCAST_GRP = MCAST_GROUP
 		self.MCAST_PORT = MCAST_PORT
 		self.debug = debug

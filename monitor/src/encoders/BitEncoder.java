@@ -8,7 +8,7 @@ import java.nio.ByteOrder;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class BitEncoder {
+public class BitEncoder implements Encoder {
 
 	private int BUFFER_SIZE = 82;
 	private final String RECEIVE_PATTERN = "hidddddddddf";
@@ -18,18 +18,6 @@ public class BitEncoder {
 	private final int GYR = 0x1e;
 	private final int MAG = 0x36;
 	private final int TMP = 0x4e;
-
-	public static void main(String[] args) {
-		BitEncoder be = new BitEncoder();
-		System.out.println(Json.read("{\"accX\":4.34, \"temp\":54.34}"));
-		byte[] arr = be.pack(Json.read("{\"accX\":4.34, \"temp\":54.34}"));
-		print(arr);
-		try {
-			System.out.println(be.unpack(arr));
-		} catch (ProtocolException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public BitEncoder() {
 		varOrdered = varOffset.entrySet().stream().sorted((v1, v2) ->
@@ -174,6 +162,10 @@ public class BitEncoder {
 		System.out.print("[ ");
 		for (byte b : buffer) System.out.print(String.format("0x%02X ", b));
 		System.out.println("]");
+	}
+
+	public int getBufferSize() {
+		return BUFFER_SIZE;
 	}
 
 }
