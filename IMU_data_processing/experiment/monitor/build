@@ -1,0 +1,42 @@
+# to build java version of plots
+
+# script location
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+WD=$PWD
+
+# go into this location
+cd $DIR
+
+if [ ! -d lib ]; then
+    mkdir lib
+fi
+cd lib
+if [ ! -f xchart-3.6.4.jar ]; then
+    wget -U "Any User Agent" https://repo1.maven.org/maven2/org/knowm/xchart/xchart/3.6.4/xchart-3.6.4.jar
+fi
+if [ ! -f mjson-1.4.1.jar ]; then
+    wget -U "Any User Agent" https://repo1.maven.org/maven2/org/sharegov/mjson/1.4.1/mjson-1.4.1.jar
+fi
+cd ..
+
+if [ -d bin ]; then
+    rm -r bin
+fi
+mkdir bin
+
+if [ -f bin/Monitor.jar ]; then
+    rm Monitor.jar
+fi
+
+javac -d bin -cp lib/xchart-3.6.4.jar:lib/mjson-1.4.1.jar:bin/ src/*.java
+cd bin
+echo "Main-Class: IcarusStats" > MANIFEST.MF
+jar -cvfm Monitor.jar MANIFEST.MF *
+rm MANIFEST.MF
+rm *.class
+cd ..
+echo done.
+
+# go back to where script was executed from
+cd $WD

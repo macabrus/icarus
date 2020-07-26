@@ -1,0 +1,75 @@
+{
+    "//": "DO NOT EDIT!!!",
+    "IF_IP": "192.168.1.4",
+    "PORT": 12000,
+    "MCAST_IP": "224.0.0.1",
+    "BUFF_SIZE": 1024,
+    "TIMEOUT": 0.5,
+    "VAR_GROUP": {
+        "acc": [
+            "accX",
+            "accY",
+            "accZ"
+        ],
+        "gyro": [
+            "gyrX",
+            "gyrY",
+            "gyrZ"
+        ],
+        "mag": [
+            "magX",
+            "magY",
+            "magZ"
+        ],
+        "tmp": [
+            "temp"
+        ]
+    },
+    "VAR_LABEL": {
+        "accX": "X",
+        "gyrX": "X",
+        "accY": "Y",
+        "gyrY": "Y",
+        "accZ": "Z",
+        "gyrZ": "Z",
+        "magX": "X",
+        "magY": "Y",
+        "magZ": "Z",
+        "temp": "Temp.",
+        "tmp": "Temperature",
+        "acc": "Accelerometer",
+        "gyro": "Gyroscope",
+        "mag": "Magnetometer"
+    },
+    "VAR_UNIT": {
+        "gyro": "º/s",
+        "tmp": "ºC",
+        "acc": "g",
+        "mag": "mT"
+    },
+    "VAR_COLOR": {
+        "accX": "#92C28C",
+        "accY": "#2F595D",
+        "accZ": "#1E1D28",
+        "gyrX": "#D81E5B",
+        "gyrY": "#EB5E55",
+        "gyrZ": "#3A3335",
+        "temp": "#ff0000",
+        "magX": "#83a3bd",
+        "magY": "#000000",
+        "magZ": "#6d4672"
+    },
+    "VAR_RANGE": {
+        "random_var": {
+            "min": -8,
+            "max": 8
+        }
+    },
+    "TIME_FRAME_SECONDS": 5,
+    "PLOT_HEIGHT": 200,
+    "LINE_WIDTH": 1.0,
+    "LINE_SMOOTHING": false,
+    "BREAK_ON": 999,
+    "CONSOLE_LOG": false,
+    "SAVE_DATA": "data/"
+}
