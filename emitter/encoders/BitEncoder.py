@@ -29,7 +29,6 @@ class BitEncoder:
 		vals = vals[2:]
 		js = {}
 		for i, var in enumerate(vars):
-			if 
 			js[var] = vals[i]
 		return js
 
