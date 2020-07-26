@@ -1,6 +1,6 @@
 {
     "//": "DO NOT EDIT!!!",
-    "IF_IP": "192.168.1.4",
+    "IF_IP": "localhost",
     "PORT": 12000,
     "MCAST_IP": "224.0.0.1",
     "BUFF_SIZE": 1024,
