@@ -1,0 +1,7 @@
+dodati tekstualne podatke na ekran(thrust, položaj)
+
+dohvaćanje podataka sa senzora #bernard
+
+splitati screen (lijevo - prikazati pravi položaj dobiven magnetometrom, desno - prikazati željeni položaj dobiven tipkovnicom)
+
+
