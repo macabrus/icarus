@@ -128,10 +128,10 @@ def main():
                     if wDown:
                         pitchDown=False
                     sDown=True
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_UP:
                     print('fuck')
                     increaseThrust=True
-                if event.key == pygame.K_LSHIFT:
+                if event.key == pygame.K_DOWN:
                     print('fuck')
                     decreaseThrust=True
                 if event.key == pygame.K_r:#izravnaj dron i resetiraj svoj referentni sustav (da yaw bude 0)
