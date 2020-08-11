@@ -66,7 +66,7 @@ public class BitEncoder implements Encoder {
 		int mask = buffer.getInt();
 		System.out.println("MASK "+ mask);
 		for (int i = 0; i != varOrdered.size() && i + 2 < RECEIVE_PATTERN.length(); i ++) {
-			if ((mask & (1 << (31 - i))) > 0) {
+			if ((mask & (1 << (31 - i))) != 0) {
 				String var = varOrdered.get(i);
 				int offset = varOffset.get(var);
 				char type = RECEIVE_PATTERN.charAt(i+2);

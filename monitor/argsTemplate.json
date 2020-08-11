@@ -11,7 +11,7 @@
             "accY",
             "accZ"
         ],
-        "gyro": [
+        "gyr": [
             "gyrX",
             "gyrY",
             "gyrZ"
@@ -42,7 +42,7 @@
         "mag": "Magnetometer"
     },
     "VAR_UNIT": {
-        "gyro": "º/s",
+        "gyr": "º/s",
         "tmp": "ºC",
         "acc": "g",
         "mag": "mT"
@@ -60,15 +60,23 @@
         "magZ": "#6d4672"
     },
     "VAR_RANGE": {
-        "random_var": {
-            "min": -8,
-            "max": 8
+        "tmp": {
+            "min": 0,
+            "max": 100
+        },
+        "gyr": {
+            "min": -20,
+            "max": 20
+        },
+        "acc": {
+            "min": -2,
+            "max": 2
         }
     },
     "TIME_FRAME_SECONDS": 5,
     "PLOT_HEIGHT": 200,
-    "LINE_WIDTH": 1.0,
-    "LINE_SMOOTHING": false,
+    "LINE_WIDTH": 2.0,
+    "LINE_SMOOTHING": true,
     "BREAK_ON": 999,
     "CONSOLE_LOG": false,
     "SAVE_DATA": "data/"

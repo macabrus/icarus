@@ -1,0 +1,58 @@
+{
+	"control_len": 1,
+	"endianness": "little",
+	"type_size": {
+		"f": 4,
+		"d": 8,
+		"i": 4,
+		"l": 8,
+		"h": 2,
+		"b": 1
+	},
+	"vars": [
+		{
+			"name": "ax",
+			"type": "d"
+		},
+		{
+			"name": "ay",
+			"type": "d"
+		},
+		{
+			"name": "az",
+			"type": "d"
+		},
+		{
+			"name": "gx",
+			"type": "d"
+		},
+		{
+			"name": "gy",
+			"type": "d"
+		},
+		{
+			"name": "gz",
+			"type": "d"
+		},
+		{
+			"name": "mx",
+			"type": "d"
+		},
+		{
+			"name": "my",
+			"type": "d"
+		},
+		{
+			"name": "mz",
+			"type": "d"
+		},
+		{
+			"name": "t",
+			"type": "h"
+		},
+		{
+			"name": "c",
+			"type": "h"
+		}
+	]
+}
