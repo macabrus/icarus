@@ -1,5 +1,5 @@
 from DataEmitter import *
-from encoders.BitEncoder import BitEncoder
+from encoders.BinaryCoder import BinaryCoder
 import random
 from time import sleep
 import math
