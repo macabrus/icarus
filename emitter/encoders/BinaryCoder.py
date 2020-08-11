@@ -4,7 +4,7 @@
 import struct
 
 
-class BitEncoder:
+class BinaryCoder:
 
 	# def __init__(self):
 	# 	pass

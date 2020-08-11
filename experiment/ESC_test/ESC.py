@@ -1,37 +1,42 @@
 # This program will let you test your ESC and brushless motor.
 # Make sure your battery is not connected if you are going to calibrate it at first.
+# Since you are testing your motor, I hope you don't have your propeller attached to it otherwise you are in trouble my friend...?
+# This program is made by AGT @instructable.com. DO NOT REPUBLISH THIS PROGRAM... actually the program itself is harmful                                             pssst Its not, its safe.
 
-import os
-import time
-os.system ("sudo pigpiod")
-time.sleep(1) # if this delay is removed you will get an error
-import pigpio
+import os     #importing os library so as to communicate with the system
+import time   #importing time library to make Rpi wait because its too impatient 
+os.system ("sudo pigpiod") #Launching GPIO library
+time.sleep(1) # As i said it is too impatient and so if this delay is removed you will get an error
+import pigpio #importing GPIO library
 
-ESC=4  #Connect the ESC in this GPIO pin 
+ESC=12  #Connect the ESC in this GPIO pin 
 
 pi = pigpio.pi();
 pi.set_servo_pulsewidth(ESC, 0) 
 
-max_value = 2000 #change this if your ESC's max value is different
-min_value = 700  #change this if your ESC's min value is different
+max_value = 2000 #change this if your ESC's max value is different or leave it be
+min_value = 700  #change this if your ESC's min value is different or leave it be
+print ("For first time launch, select calibrate")
+print ("Type the exact word for the function you want")
+print ("calibrate OR manual OR control OR arm OR stop")
 
 def manual_drive(): #You will use this function to program your ESC if required
-    print("Value between 0 and max value:")    
+    print ("You have selected manual option so give a value between 0 and you max value")    
     while True:
         inp = input()
         if inp == "stop":
             stop()
             break
         elif inp == "control":
-            control() #
+            control()
             break
         elif inp == "arm":
             arm()
-            break    
+            break	
         else:
             pi.set_servo_pulsewidth(ESC,inp)
                 
-def calibrate():   #the auto calibration procedure of a normal ESC
+def calibrate():   #This is the auto calibration procedure of a normal ESC
     pi.set_servo_pulsewidth(ESC, 0)
     print("Disconnect the battery and press Enter")
     inp = input()
@@ -41,40 +46,40 @@ def calibrate():   #the auto calibration procedure of a normal ESC
         inp = input()
         if inp == '':            
             pi.set_servo_pulsewidth(ESC, min_value)
-            print("Wierd eh! Special tone")
-            time.sleep(2)
-            print("Wait for it ....")
-            #time.sleep (5)
-            print("Im working on it, DONT WORRY JUST WAIT.....")
+            print ("Wierd eh! Special tone")
+            time.sleep(7)
+            print ("Wait for it ....")
+            time.sleep (5)
+            print ("Im working on it, DONT WORRY JUST WAIT.....")
             pi.set_servo_pulsewidth(ESC, 0)
             time.sleep(2)
-            print("Arming ESC now...")
+            print ("Arming ESC now...")
             pi.set_servo_pulsewidth(ESC, min_value)
             time.sleep(1)
-            print("See.... uhhhhh")
-            control() # You can change this to any other function you want
+            print ("See.... uhhhhh")
+            manual_drive() # You can change this to any other function you want
             
 def control(): 
-    print("Starting the motor. I hope its calibrated and armed, if not restart by giving 'x'")
-    #time.sleep(1)
-    speed = 1500    # speed should be between 700 and 2000
-    print("Controls - \na - decrease speed\n d - increase speed\nq - decrease a lot of speed\ne - increase a lot of speed")
+    print ("I'm Starting the motor, I hope its calibrated and armed, if not restart by giving 'x'")
+    time.sleep(1)
+    speed = 1500    # change your speed if you want to.... it should be between 700 - 2000
+    print ("Controls - a to decrease speed & d to increase speed OR q to decrease a lot of speed & e to increase a lot of speed")
     while True:
         pi.set_servo_pulsewidth(ESC, speed)
         inp = input()
         
         if inp == "q":
-            speed -= 100    # decrementing the speed
-            print("speed = %d" % speed)
+            speed -= 100    # decrementing the speed like hell
+            print ("speed = %d" % speed)
         elif inp == "e":    
-            speed += 100    # incrementing the speed
-            print("speed = %d" % speed)
+            speed += 100    # incrementing the speed like hell
+            print ("speed = %d" % speed)
         elif inp == "d":
             speed += 10     # incrementing the speed 
-            print("speed = %d" % speed)
+            print ("speed = %d" % speed)
         elif inp == "a":
             speed -= 10     # decrementing the speed
-            print("speed = %d" % speed)
+            print ("speed = %d" % speed)
         elif inp == "stop":
             stop()          #going for the stop function
             break
@@ -83,12 +88,12 @@ def control():
             break
         elif inp == "arm":
             arm()
-            break    
+            break	
         else:
-            print("Press a,q,d or e")
+            print ("WHAT DID I SAID!! Press a,q,d or e")
             
-def arm(): #the arming procedure of an ESC 
-    print("Connect the battery and press Enter")
+def arm(): #This is the arming procedure of an ESC 
+    print ("Connect the battery and press Enter")
     inp = input()    
     if inp == '':
         pi.set_servo_pulsewidth(ESC, 0)
@@ -99,14 +104,13 @@ def arm(): #the arming procedure of an ESC
         time.sleep(1)
         control() 
         
-def stop(): #This will stop every action your Pi is performing for ESC.
+def stop(): #This will stop every action your Pi is performing for ESC ofcourse.
     pi.set_servo_pulsewidth(ESC, 0)
     pi.stop()
 
-print("For the first time launch, select 'calibrate'")
-print("calibrate \ manual \ control \ arm \ stop")
-
-inp = input()
+#This is the start of the program actually, to start the function it needs to be initialized before calling... stupid python.    
+inp = input("Write it here: ")
+print("inp:", inp)
 if inp == "manual":
     manual_drive()
 elif inp == "calibrate":
@@ -117,6 +121,5 @@ elif inp == "control":
     control()
 elif inp == "stop":
     stop()
-else:
-    print("Thank You for not following the things I'm saying... now you gotta restart the program!")
-
+else :
+    print ("Thank You for not following the things I'm saying... now you gotta restart the program STUPID!!")
